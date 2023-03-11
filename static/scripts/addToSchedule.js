@@ -28,7 +28,7 @@ function checkExists(trs,courseCode){
             return true;
     }
     return false;
-    //console.log(Array.from(trs))
+  
 }
 
 function conflictFinal(courseCode,section) {
@@ -234,7 +234,7 @@ function getRelatedCourses(section,index){
     }
     course[0].querySelectorAll('td')[0].setAttribute("onclick",`removeSchedule(${sections})`)
     course[0].querySelectorAll('td')[0].innerHTML = "أحذف"
-    console.log(course)
+  
     return course;
 }
 
@@ -338,7 +338,7 @@ function initDays(){
                     schedule["5"][courseName] = []
                     break;
                 case " ":
-                    console.log('space')
+                  
                     break;
                 default:
                     counter++;
@@ -367,7 +367,7 @@ function generateSchedule(major) {
           $('body').html(response)
         },
         error: function(xhr, status, error) {
-          console.log("Error:", error);
+          
         }
       });
 }
