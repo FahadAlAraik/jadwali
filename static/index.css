@@ -1,0 +1,99 @@
+@import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+
+body {
+    font-family: 'Droid Arabic Naskh', serif!important;
+}
+
+.table-headers th{
+    color:white;
+    background-color: #079073!important;
+    padding:10px!important;
+}
+
+.clickable:hover {
+    cursor: pointer;
+
+}
+
+.clickable {
+ 
+    color: #1573a6 !important;;
+}
+
+
+/*navlink*/
+
+
+li .nav-link {
+    color:#079073!important;
+    font-size:24px;
+    margin-right: 15px!important;
+}
+
+.logo {
+    width:196px;height:196px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:495px) {
+
+    li .nav-link{
+        font-size:18px!important;
+    }
+
+    .logo{
+        width: 156px;height: 156px;
+    }
+    
+    .nav{
+        margin-right: 0px!important;
+    }
+    
+}
+
+@media screen and (max-width:410px) {
+
+    li .nav-link{
+        font-size:18px!important;
+    }
+
+    .logo{
+        width: 128px;height: 128px;
+    }
+    
+}
+
+@media screen and (max-width:410px) {
+
+    li .nav-link{
+        font-size:14px!important;
+    }
+
+    .logo{
+        width: 128px;height: 128px;
+    }
+    
+}
+
+
+
+
+/*joinus*/
+
+.join-us-content{
+    padding: 50px;
+    border-radius: 25px;
+    background: #079073;
+    color: white;
+}
+
+.contact-icon {
+    width:42px;height:42px;fill:white;margin:15px;
+
+}
+
+.contact-icon:hover {
+    fill:#149be4;
+    transition: 0.2s;
+    cursor: pointer;
+}

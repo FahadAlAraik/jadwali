@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{url_for('static',filename='icons/favicon.ico')}}">
+    <title>جدولي</title>
+</head>
+<body>
+    
+    <ul class="nav justify-content-end" style="margin-right: 25px;">
+        <li class="nav-item d-flex align-self-center align-items-center">
+          <a class="nav-link" href="/join">أنضم معنا</a>
+        </li>
+        <li class="nav-item d-flex align-self-center align-items-center">
+          <a class="nav-link" href="/">الرئيسية</a>
+        </li>
+        <li class="nav-item">
+            <img src="{{ url_for('static', filename='icons/logo.png') }}" class="logo" onclick="window.location.href='/'">
+        </li>
+      </ul>
+      
+       
+        
+    
+
+    <div class="container justify-content-center d-flex text-center">
+        <form action="/" method="post">
+
+        
+            <h1 class="m-5" style="color:#079073">الرجاء إختيار التخصص</h1>
+    
+            <select class="m-2 text-center" name="major">
+                <option value="swe" selected>هندسة البرمجيات</option>
+                <option value="cs">علوم الحاسب</option>
+                <option value="cenx">هندسة الحاسب</option>
+                <option value="is">نظم المعلومات</option>
+            </select>
+            <br>
+    
+            <button type="submit" class="btn btn-dark m-2" style="background-color: #079073;border-color:#079073">المقررات المطروحة</button>
+    
+        </form>
+    </div>
+
+</body>
+</html>

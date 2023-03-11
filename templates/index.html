@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
+    <script src='https://code.jquery.com/jquery-3.5.1.js'></script>
+    <link rel="icon" type="image/x-icon" href="{{url_for('static',filename='icons/favicon.ico')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <script src='https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" crossorigin="anonymous" />
+    <script src='https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js'></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <title>جدولي</title>
+    <style>
+        .page-link{
+            color:#63988D
+        }
+        .page-link:hover {
+            color:#63988D
+        }
+        .active>.page-link{
+            background-color: #079073;
+            color:white;
+            border-color:#079073;
+        }
+      </style>
+
+</head>
+<body>
+
+    <ul class="nav justify-content-end" style="margin-right: 25px;">
+        <li class="nav-item d-flex align-self-center align-items-center">
+          <a class="nav-link" href="/join">أنضم معنا</a>
+        </li>
+        <li class="nav-item d-flex align-self-center align-items-center">
+          <a class="nav-link" href="/">الرئيسية</a>
+        </li>
+        <li class="nav-item">
+            <img src="{{ url_for('static', filename='icons/logo.png') }}" class="logo" onclick="window.location.href='/'">
+        </li>
+      </ul>
+    
+    <div class="container mt-5">
+       <div class=""  >
+            <img src="{{url_for('static', filename='icons/schedule.png') }}" style="width:64px;height:64px;cursor: pointer;" onclick="generateSchedule('{{major}}')" />
+            <br>
+            <p style="font-size:1.25rem;margin-left:3.5px;margin-top: 10px;display: inline;cursor: pointer;" onclick="generateSchedule('{{major}}')">الجدول</p>
+       </div>
+    </div>
+   
+    <div class="container">
+        <h3 class="text-center m-5">المقررات المضافة</h3>
+        <table  class="table table-striped text-center">
+            <thead class="table-headers">
+              
+                <th>حذف</th>
+                <th>التفاصيل</th>
+                <th>الجنس</th>
+                <th>الساعات</th>
+                <th>النشاط</th>
+                <th>الشعبة</th>
+                <th>اسم المقرر</th>
+                <th>رمز المقرر</th>
+                
+                
+            </thead>
+            <tbody id="added-courses">
+
+            </tbody>
+        </table>
+    </div>
+   <div class="container">
+        <h3 class="text-center m-5">المقررات المطروحة</h3>
+        <table id="example" class="table table-striped text-center">
+            <thead >
+              
+                <tr class="table-headers">
+                    <th>إضافة</th>
+                    <th>التفاصيل</th>
+                    <th>الجنس</th>
+                    <th>الساعات</th>
+                    <th>النشاط</th>
+                    <th>الشعبة</th>
+                    <th>اسم المقرر</th>
+                    <th>رمز المقرر</th>
+                </tr>
+                
+                <!--.replace("'",'').replace('[','').replace(']','')-->
+            </thead>
+            <tbody id="courses-table">
+                {%for index, row in data.iterrows()%}
+                <tr id="{{row.section_number}}" index="{{loop.index}}" final-day="{{row.final_exam_day}}" final-time="{{row.final_exam_time}}" final-date="{{row.final_exam_date}}"
+                course-day="{{row.course_day.replace("'",'').replace('[','').replace(']','')}}" course-time="{{row.course_time}}" course-name="{{row.course_code}}">
+                    {% if row.course_type == "محاضرة"%}
+                    <td class="clickable" onclick="addToSchedule('{{ row.section_number }}','{{loop.index}}','{{row.course_code}}','{{row.course_hours}}')">إضافة</td>
+                    {%else%}
+                    <td class="clickable"></td>
+                    {%endif%}
+                    <td class="clickable" onclick="openModal()">التفاصيل</td>
+                    <td>{{row.course_gender}}</td>
+                    <td>{{row.course_hours}}</td>
+                    <td>{{row.course_type}}</td>
+                    <td>{{row.section_number}}</td>
+                    <td>{{row.course_name}}</td>
+                    <td>{{row.course_code}}</td>
+                  </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+   </div>
+
+   <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content text-center">
+            <!-- Modal Header -->
+            <div class="modal-header text-center">
+                <h4 class="modal-title text-center">التفاصيل</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p>نعتذر, حالياً جدولي لا يدعم التفاصيل 😄</p>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+<script src="{{ url_for('static', filename='scripts/addToSchedule.js') }}"></script> 
+
+  
+</body>
+</html>

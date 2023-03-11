@@ -1,0 +1,78 @@
+.container-fahad{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    
+    align-content: center;
+    
+  
+    
+}
+
+.day {
+    padding:15px;
+    border-radius: 10px;
+   
+}
+
+.one-hour-course {
+    background-color: #00695C;
+    border-radius: 8px;
+    width: 120px;
+    height: 90px;
+    margin: auto;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    color: white!important;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.vacant {
+    
+    width: 120px;
+    height:90px;
+}
+
+.two-hour-course {
+    background-color: blue;
+    border-radius: 25px;
+    width: 120px;
+    height: 215px;
+}
+
+.day-header{
+    
+    padding-bottom:45px;
+    margin-bottom: 25px;
+    text-align: center;
+    color:white;
+    background-color: #079073!important;
+}
+
+.hours {
+    width: 120px;
+    height:90px;
+    position: relative;
+}
+
+.up-hour {
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%);
+}
+
+.bottom-hour {
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
+}
+
+.break {
+    height: 20px;
+    width: 120px;
+}

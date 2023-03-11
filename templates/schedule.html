@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{url_for('static',filename='icons/favicon.ico')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>جدولي</title>
+</head>
+<body >
+  
+    <ul class="nav justify-content-end" style="margin-right: 25px;">
+        <li class="nav-item d-flex align-self-center align-items-center">
+          <a class="nav-link" href="/join">أنضم معنا</a>
+        </li>
+        <li class="nav-item d-flex align-self-center align-items-center">
+          <a class="nav-link" href="/">الرئيسية</a>
+        </li>
+        <li class="nav-item">
+            <img src="{{ url_for('static', filename='icons/logo.png') }}" class="logo" onclick="window.location.href='/'">
+        </li>
+      </ul>
+
+    <div class="container mt-5 mb-5" style="position:relative">
+        <i class="fa-solid fa-arrow-right float-right" style="position:absolute;color:#079073;font-size: 40px;top:5%;right: 0%;cursor:pointer" onclick="var url='{{major}}';window.location.href=`/courses/${url}`"></i>
+        <h1 style="text-align:center">الجدول</h1>
+    </div>
+   
+
+
+    <div>
+        <div class="container">
+
+            <table  class="table table-striped text-center">
+    
+                <thead class="table-headers">
+                    <th>الخميس</th>
+                    <th>الإربعاء</th>
+                    <th>الثلاثاء</th>
+                    <th>الإثنين</th>
+                    <th>الأحد</th>
+                    <th>الوقت</th>
+                </thead>
+
+                    {% for i in hours %}
+                    <tr >
+                     
+
+                        {% if i in thursday%}
+                                <td  index="{{i}}-thursday" style="margin:20px">
+                                    <p class="one-hour-course" index="{{i}}-course-thursday">{{thursday[i]}}</p>
+                                   
+                                </td>
+                        {%else%}
+                            <td class="vacant" index="{{i}}-thursday">
+                                <p  index="{{i}}-course-thursday"></p>
+                            </td>
+                        {%endif%}
+
+                        {% if i in wednesday%}
+                        <td  index="{{i}}-wednesday">
+                            <p class="one-hour-course" index="{{i}}-course-wednesday">{{wednesday[i]}}</p>
+                           
+                        </td>
+                        {%else%}
+                    <td class="vacant" index="{{i}}-wednesday">
+                        <p index="{{i}}-course-wednesday"></p>
+                    </td>
+                        {%endif%}
+
+                        {% if i in tuesday%}
+                            <td  index="{{i}}-tuesday">
+                            <p class="one-hour-course" index="{{i}}-course-tuesday">{{tuesday[i]}}</p>   
+                            </td>
+                        {%else%}
+                            <td class="vacant" index="{{i}}-tuesday">
+                                <p index="{{i}}-course-tuesday"></p>
+                            </td>
+                        {%endif%}
+
+                        {% if i in monday%}
+                        <td  index="{{i}}-monday">
+                            <p  class="one-hour-course" index="{{i}}-course-monday">{{monday[i]}}</p>
+                           
+                        </td>
+                        {%else%}
+                    <td class="vacant" index="{{i}}-monday">
+                        <p index="{{i}}-course-monday"></p>
+                    </td>
+                        {%endif%}
+
+                        {% if i in sunday%}
+                                <td  index="{{i}}-sunday">
+                                    <p class="one-hour-course" index="{{i}}-course-sunday">{{sunday[i]}}</p>
+                                </td>
+                        {%else%}
+                            <td class="vacant" index="{{i}}-sunday">
+                                <p index="{{i}}-course-sunday"></p>
+                            </td>
+                        {%endif%}
+
+
+                        <td class="hours">
+                            <span class="up-hour">
+                                {{ i[:5] }}
+                            </span>
+                            <span class="bottom-hour">
+                                {{i[6:]}}
+                            </span>
+                        </td>
+
+                   
+
+                    
+                    
+                    </tr>
+
+
+              
+                    {% endfor %}
+         
+
+        
+            </table>
+
+        </div>
+    </div>
+
+
+  
+
+</body>
+</html>
