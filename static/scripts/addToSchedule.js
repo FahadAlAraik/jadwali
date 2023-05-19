@@ -37,8 +37,9 @@ function conflictFinal(courseCode,section) {
     var courseAddedCode = course.getElementsByTagName('td')[7].innerHTML
     var trs = addTable.getElementsByTagName('tr')
     for(let i =0; i<trs.length;i++){
-
-        if(trs[i].getAttribute('final-day') == course.getAttribute('final-day'))
+        console.log(trs[i].getAttribute('final-day'))
+        console.log(course.getAttribute('final-day'))
+        if(trs[i].getAttribute('final-day') == course.getAttribute('final-day') && course.getAttribute('final-day') != '---')
             if(trs[i].getAttribute('final-date') == course.getAttribute('final-date'))
                 if(trs[i].getAttribute('final-time') == course.getAttribute('final-time')){
                     window.alert(`  يوجد تعارض اختبار نهائي بين${courseCode} و ${trs[i].getElementsByTagName('td')[7].innerHTML} `)
@@ -126,7 +127,7 @@ function addToSchedule(section,index,courseCode,courseHours){
     var addTable = document.getElementById('added-courses');
     if(checkExists(addTable,courseCode))
     {
-        window.alert("من جدك؟ ماتشوفها مضافة فوق ؟")
+        window.alert("المادة مضافة")
         return
     }
     if(conflictFinal(courseCode,section)){
