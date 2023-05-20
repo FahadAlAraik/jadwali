@@ -1,6 +1,8 @@
 from flask import Flask,render_template,jsonify,redirect,request,url_for
 import json
 import pandas as pd
+from waitress import serve
+from wsgiref.simple_server import make_server
 app = Flask(__name__,static_folder='static')
 import sys
 #sys.stdout.reconfigure(encoding='utf-8')
@@ -48,6 +50,7 @@ def swapKeyValue(json,day):
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
+  
 
 
 
