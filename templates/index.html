@@ -32,11 +32,7 @@
 
        
         body {
-         
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-image: url('/static/layered-waves-haikei.svg');
-            background-position: center;
+       
             
 }
 .container {
@@ -123,7 +119,7 @@ table {
                     {%else%}
                     <td class="clickable"></td>
                     {%endif%}
-                    <td class="clickable" onclick="openModal()">التفاصيل</td>
+                    <td class="clickable" onclick="openModal('نعتذر, حالياً لاتوجد التفاصيل للمادة. يرجى الإطلاع عليها من البوابة')">التفاصيل</td>
                     <td>{{row.course_gender}}</td>
                     <td>{{row.course_hours}}</td>
                     <td>{{row.course_type}}</td>
@@ -146,7 +142,7 @@ table {
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-                <p>نعتذر, حالياً جدولي لا يدعم التفاصيل 😄</p>
+                <p id="modal-text"></p>
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">

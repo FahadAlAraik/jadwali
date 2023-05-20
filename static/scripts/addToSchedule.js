@@ -42,7 +42,7 @@ function conflictFinal(courseCode,section) {
         if(trs[i].getAttribute('final-day') == course.getAttribute('final-day') && course.getAttribute('final-day') != '---')
             if(trs[i].getAttribute('final-date') == course.getAttribute('final-date'))
                 if(trs[i].getAttribute('final-time') == course.getAttribute('final-time')){
-                    window.alert(`  يوجد تعارض اختبار نهائي بين${courseCode} و ${trs[i].getElementsByTagName('td')[7].innerHTML} `)
+                    openModal(`  يوجد تعارض اختبار نهائي بين${courseCode} و ${trs[i].getElementsByTagName('td')[7].innerHTML} `)
                     return true;
                 }
 
@@ -79,7 +79,7 @@ function conflictDay(section,index){
                     for(let courses in schedule[day]){
                         for(let time in schedule[day][courses]){
                             if(schedule[day][courses].includes(courseTime[counter])){
-                                window.alert(`يوجد تعارض في الاوقات بين المادتين ${courseName} و ${courses}`)
+                               openModal(`يوجد تعارض في الاوقات بين المادتين ${courseName} و ${courses}`)
                                 return true;}
                         }
                     }
@@ -117,17 +117,17 @@ function addToSchedule(section,index,courseCode,courseHours){
    
     var hours = getHours()
     if(hours+Number(courseHours) >15){
-        window.alert('سوف تتعدا الحد المسموح من الساعاعت')
+        openModal("سوف تتجاوز 15 ساعة")
         return
     }
     if(hours ==15){
-        window.alert('الحد المسموح 15 ساعة')
+        openModal('الحد المسموح 15 ساعة')
         return
     }
     var addTable = document.getElementById('added-courses');
     if(checkExists(addTable,courseCode))
     {
-        window.alert("المادة مضافة")
+        openModal("المادة مضافة")
         return
     }
     if(conflictFinal(courseCode,section)){
@@ -376,7 +376,8 @@ function generateSchedule(major) {
 
 
 //'{{row.lecturer.strip('[]\'')}}', '{{row.final_exam_day}}','{{row.final_exam_time}}','{{row.final_exam_date}}', '{{row.course_hours}}', '{{row.course_time}}','{{row.course_day}}'
-function openModal(...args) {
+function openModal(msg) {
 
+    $('#modal-text').text(msg)
     $('#myModal').modal('show');
   }
